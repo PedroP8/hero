@@ -10,10 +10,11 @@ import java.io.IOException;
 
 public class Game {
     private Screen screen;
-    private Arena arena= new Arena(40,20);
+    private Arena arena;
 
-    public Game() throws IOException {
-        TerminalSize terminalSize = new TerminalSize(40, 20);
+    public Game(int width, int height) throws IOException {
+        TerminalSize terminalSize = new TerminalSize(width, height);
+        arena= new Arena(width,height);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
         terminalFactory=terminalFactory.setInitialTerminalSize(terminalSize);
         Terminal terminal= terminalFactory.createTerminal();
@@ -32,7 +33,7 @@ public class Game {
     }
     private void draw() throws IOException {
         screen.clear();
-        arena.draw(screen);
+        arena.draw(screen.newTextGraphics());
         screen.refresh();
     }
     private void processKey(KeyStroke key) throws IOException {
