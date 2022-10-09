@@ -10,8 +10,8 @@ import java.io.IOException;
 
 public class Game {
     private Screen screen;
-    private int x=10;
-    private int y=10;
+    private Arena arena= new Arena(40,20);
+
     public Game() throws IOException {
         TerminalSize terminalSize = new TerminalSize(40, 20);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
@@ -32,15 +32,13 @@ public class Game {
     }
     private void draw() throws IOException {
         screen.clear();
-        screen.setCharacter(x, y , TextCharacter.fromCharacter('X')[0]);
+        arena.draw(screen);
         screen.refresh();
     }
     private void processKey(KeyStroke key) throws IOException {
-        if (key.getKeyType() == KeyType.ArrowUp) y--;
-        if (key.getKeyType() == KeyType.ArrowDown)y++;
-        if (key.getKeyType() == KeyType.ArrowLeft)x--;
-        if (key.getKeyType() == KeyType.ArrowRight)x++;
         if (key.getKeyType() == KeyType.Character && key.getCharacter()=='q')screen.close();
+        arena.processKey(key);
     }
+
 
 }
