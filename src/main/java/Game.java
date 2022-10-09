@@ -29,6 +29,10 @@ public class Game {
             KeyStroke key = screen.readInput();
             if(key.getKeyType()==KeyType.EOF)break;
             processKey(key);
+            if(arena.verifyMonsterCollisions()){
+                System.out.println("GAME OVER");
+                screen.close();
+            }
         }
     }
     private void draw() throws IOException {

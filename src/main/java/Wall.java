@@ -5,6 +5,6 @@ public class Wall extends Element{
         super(x,y);
     }
     public void draw(TextGraphics graphics){
-        super.draw(graphics,"#222222","T");
+        super.draw(graphics,"#222222","#");
     }
 }
